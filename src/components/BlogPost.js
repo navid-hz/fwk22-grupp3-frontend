@@ -20,7 +20,7 @@ const BlogPost = () => {
     
     return (
         <div>
-            {BlogPost ? (
+            {blogPost ? (
                 <div>
                     <h2>{blogPost.title}</h2>
                     <p>{blogPost.content}</p>
