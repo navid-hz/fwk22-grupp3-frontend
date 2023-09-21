@@ -1,7 +1,9 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css';
 import BlogList from './components/BlogList'
-import BlogPost from './components/BlogPost'
+import BlogPost from './components/BlogPost';
+
 
 function App() {
   return (
@@ -10,7 +12,12 @@ function App() {
         <h1>Welcome</h1>
       </header>
       <main>
-        <BlogList />
+        <Router>
+          <Routes>
+            <Route path='/' Component={BlogList} />
+            <Route path='/blog/:id' Component={BlogPost} />
+          </Routes>
+        </Router>
       </main>
     </div>
   )

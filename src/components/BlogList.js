@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const BlogList = () => {
     const blogPosts = [
@@ -13,8 +14,10 @@ const BlogList = () => {
             <ul>
                 {blogPosts.map((post) => (
                     <li key={post.id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.content}</p>
+                        <Link to={`/blog/${post.id}`}>
+                            <h3>{post.title}</h3>
+                            <p>{post.content}</p>
+                        </Link>
                     </li>
                 ))}
             </ul>
