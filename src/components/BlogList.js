@@ -1,28 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-const BlogList = () => {
-    const blogPosts = [
-        { id: 1, title: "You Won't Believe What Emma Roberts Done Now", content: "She wore the same braid three days in a row. Seriously. That's what this article is about."},
-        { id: 2, title: "You Won't Believe How Simple This Celebrity Jewelry Hack Is", content: "Tie a bandana around your neck. That's it. That's the 'hack'"},
-        //More Blog posts
-    ]
+function BlogList() {
+  const [post, setPosts] = useState([]);
+  const backendURL = 'http://localhost:5000/blogs';
 
-    return (
-        <div>
-            <h2>Blog Posts</h2>
-            <ul>
-                {blogPosts.map((post) => (
-                    <li key={post.id}>
-                        <Link to={`/blog/${post.id}`}>
-                            <h3>{post.title}</h3>
-                            <p>{post.content}</p>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
+  useEffect(() => {
+    fetch(backendURL)
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching blog posts:', error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h2>Blog Posts</h2>
+      <ul>
+        {post.map((blog) => (
+          <li key={blog._id}>
+            <Link to={`/blog/${blog._id}`}>
+              <h3>{blog.title}</h3>
+            </Link>
+            <p>{blog.content}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default BlogList
+export default BlogList;

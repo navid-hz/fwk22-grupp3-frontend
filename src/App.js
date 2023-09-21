@@ -15,7 +15,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' Component={BlogList} />
-            <Route path='/blog/:id' Component={BlogPost} />
+            <Route path='/:id' Component={BlogPost} />
           </Routes>
         </Router>
       </main>
