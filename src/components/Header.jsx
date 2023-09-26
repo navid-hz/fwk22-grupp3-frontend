@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <div>
       <ul>
-        <li>Shine & Clean</li>
+        <li>BLOG</li>
         <li className="push-right">
           {" "}
           <Link className="links" to="/">
