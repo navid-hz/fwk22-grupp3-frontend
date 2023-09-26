@@ -4,11 +4,13 @@ import "./App.css";
 import Home from "./Pages/Home";
 import CreateBlog from "./Pages/CreateBlog";
 import Blog from "./Pages/Blog";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-blog" element={<CreateBlog />} />
