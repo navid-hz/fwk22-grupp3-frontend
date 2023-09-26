@@ -1,23 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import BlogList from "./components/BlogList";
-import BlogPost from "./components/BlogPost";
+import Home from "./Pages/Home";
+import CreateBlog from "./Pages/CreateBlog";
+import Blog from "./Pages/Blog";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome</h1>
-      </header>
-      <main>
-        <Router>
-          <Routes>
-            <Route path="/" Component={BlogList} />
-            <Route path="/:id" Component={BlogPost} />
-          </Routes>
-        </Router>
-      </main>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/blog/:id" element={<Blog />} />
+          <Route path="*" element={<h1>Page not found 404</h1>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
