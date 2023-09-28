@@ -5,8 +5,8 @@ ul {
   color: #000;
   font-size: 22px;
   list-style-type: none;
-  background-color: rgb(146, 66, 251);
   margin: 0;
+  background-color: none;
 }
 
 li {
@@ -18,17 +18,12 @@ li {
 }
 
 .links {
-  color: #fff;
+  color: #716f6f;
   text-decoration: none;
-}
-
-.btn-user {
-  color: rgb(104, 85, 224);
-  background-color: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(104, 85, 224, 1);
 }
 
 .links:hover {
   color: black;
   cursor: pointer;
 }
+

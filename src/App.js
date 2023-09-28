@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./Pages/Home";
+import 'react-multi-carousel/lib/styles.css'
+import Home from "./components/Home";
 import CreateBlog from "./Pages/CreateBlog";
 import Blog from "./Pages/Blog";
 import Header from "./components/Header";

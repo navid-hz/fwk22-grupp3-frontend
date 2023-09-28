@@ -1,0 +1,42 @@
+/* DisplayBlogs.css */
+body{
+    background-color: rgb(221, 213, 225);
+}
+/*.blog-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+  } */
+  
+  .blog-post {
+    background-color: #ffffff; 
+    border-radius: 1px;
+    border-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: rgb(83, 83, 83); /* Text color */
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.2s; /* Add a smooth hover effect */
+    width: 100%;
+    height: 237.2px;
+  }
+  
+  .blog-post:hover {
+    transform: translateY(-15px); /* Hover effect: Lift the post slightly */
+  }
+  
+  .blog-post h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .blog-post p {
+    font-size: 1rem;
+  }
+
+  
+
+  .homelist{
+    background-color: none;
+  }
