@@ -1,66 +1,57 @@
-import React, { useState, useEffect } from "react";
-import "./Home.css";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, this is from npm.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-
-  const [blogs, setBlogs] = useState([]);
+function Home() {
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    // Fetch blogs from the backend API when the component mounts
-    try {
-      fetch("/blogs")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setBlogs(data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    } catch (error) {
-      console.error("Fetch error:", error);
-    }
+    fetch('https://dummyjson.com/posts')
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data.posts);
+      })
+      .catch((error) => {
+        console.error('Error fetching blog posts:', error);
+      });
   }, []);
+
+  const containerStyle = {
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '20px',
+  };
+
+  const postStyle = {
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    padding: '20px',
+    marginBottom: '20px',
+    backgroundColor: '#fff',
+  };
+
+  const titleStyle = {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+  };
+
+  const bodyStyle = {
+    fontSize: '16px',
+  };
+
   return (
-    <div className="card-container">
-      <Carousel responsive={responsive}>
-        {blogs.map((blog) => (
-          <div key={blog._id} className="blog-post">
-            <h2>{blog.title}</h2>
-            <p>{blog.content}</p>
-            <p>
-             <button>More...</button>
-            </p>
-          </div>
-        ))}
-      </Carousel>
+    <div style={containerStyle}>
+     
+      {posts.map((post) => (
+        <div key={post.id} style={postStyle}>
+          <Link to={`/blog/${post.id}`}>
+            <h3 style={titleStyle}>{post.title}</h3>
+          </Link>
+          <p style={bodyStyle}>{post.body}</p>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
 export default Home;
