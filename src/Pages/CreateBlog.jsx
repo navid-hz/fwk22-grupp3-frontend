@@ -1,6 +1,5 @@
-import React, { useState} from "react";
-import '../components/CreateBlog.css'
-
+import React, { useState } from "react";
+import "../components/CreateBlog.css";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
@@ -43,8 +42,8 @@ const CreateBlog = () => {
   };
 
   return (
-    <div>
-      <h1>Create Page</h1>
+    <div className="container">
+      <h1 className="title">Create Blog:</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
