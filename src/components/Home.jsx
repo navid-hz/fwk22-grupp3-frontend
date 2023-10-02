@@ -25,6 +25,7 @@ function Home() {
   });
 
   const deleteBlog = async (id) => {
+    console.log(id);
     try {
       await fetch(`http://localhost:5000/blogs/${id}`, {
         method: "DELETE",
