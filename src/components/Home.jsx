@@ -2,31 +2,36 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/posts")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data.posts);
-      })
-      .catch((error) => {
-        console.error("Error fetching blog posts:", error);
-      });
-  }, []);
-
-  const deleteBlog = async (id) => {
-    try {
-      const response = await fetch(
-        `http://192.168.43.114:5000/api/blogs/delete/${id}`,
-        {
-          method: "DELETE",
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/blogs", {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-        }
-      );
-      const data = await response.json();
+        });
+        const data = await response.json();
+
+        setBlogs(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBlogs();
+  });
+
+  const deleteBlog = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/blogs/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     } catch (error) {
       console.error(error);
     }
@@ -67,13 +72,13 @@ function Home() {
 
   return (
     <div style={containerStyle}>
-      {posts.map((post) => (
-        <div key={post.id} style={postStyle}>
-          <Link to={`/blog/${post.id}`}>
-            <h3 style={titleStyle}>{post.title}</h3>
+      {blogs.map((blog) => (
+        <div key={blog._id} style={postStyle}>
+          <Link to={`/blog/${blog._id}`}>
+            <h3 style={titleStyle}>{blog.title}</h3>
           </Link>
-          <p style={bodyStyle}>{post.body}</p>
-          <button style={buttonStyle} onPress={() => deleteBlog(post._id)}>
+          <p style={bodyStyle}>{blog.content}</p>
+          <button style={buttonStyle} onClick={() => deleteBlog(blog._id)}>
             Delete
           </button>
         </div>

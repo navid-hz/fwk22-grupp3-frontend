@@ -10,7 +10,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await fetch(`https://dummyjson.com/posts/${id}`, {
+        const response = await fetch(`http://localhost:5000/blogs/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -27,13 +27,13 @@ const Blog = () => {
     fetchUserBlogs();
   }, []);
 
-  console.log(blog.title);
+  console.log(blog);
 
   return (
     <div className="container-blog">
       <p>May 20 - Written By USer</p>
-      {/* <h1>{blog.title}</h1>
-      <p>{blog.body}</p> */}
+      <h1>{blog.title}</h1>
+      <p>{blog.content}</p>
     </div>
   );
 };
