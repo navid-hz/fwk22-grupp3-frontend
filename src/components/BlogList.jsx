@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
 
 function BlogList() {
   const [post, setPosts] = useState([]);
-  const backendURL = 'http://localhost:5000/blogs';
+  const db = firebase/firestore()
 
   useEffect(() => {
-    fetch(backendURL)
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const data = [];
+        const querySnapshot = await db.collection('blogposts').get();
+        querySnapshot.forEach((doc) => {
+          data.push({ ...doc.data(), id: doc.id });
+        });
         setPosts(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching blog posts:', error);
-      });
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [db]);
 
   return (
     <div>
       <h2>Blog Posts</h2>
       <ul>
-        {post.map((blog) => (
-          <li key={blog._id}>
-            <Link to={`/blog/${blog._id}`}>
+        {posts.map((blog) => (
+          <li key={blog.id}>
+            <Link to={`/blog/${blog.id}`}>
               <h3>{blog.title}</h3>
             </Link>
             <p>{blog.content}</p>

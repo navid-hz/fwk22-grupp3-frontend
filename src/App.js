@@ -1,3 +1,6 @@
+import * as firebase from "firebase/app"; 
+import "firebase/firestore"; 
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -7,7 +10,11 @@ import CreateBlog from "./Pages/CreateBlog";
 import Blog from "./Pages/Blog";
 import Header from "./components/Header";
 
+import firebaseConfig from './firebaseConfig'
+firebase.initializeApp(firebaseConfig);
+
 function App() {
+  
   return (
     <div className="App">
       <Router>
