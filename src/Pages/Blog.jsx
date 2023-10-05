@@ -7,12 +7,6 @@ const Blog = () => {
   // Get the blogId
   const { id } = useParams();
 
-  
-
-  useEffect(() => {
-    fetchAllBlogs();
-  }, []);
-
   const fetchAllBlogs = async () => {
     try {
       const response = await fetch(`http://localhost:5000/blogs/${id}`, {
@@ -28,6 +22,13 @@ const Blog = () => {
       console.error(error);
     }
   };
+
+
+  useEffect(() => {
+    fetchAllBlogs();
+  }, []);
+
+  
 
   function formatTimestamp(timestamp) {
     const dateObject = new Date(timestamp);
