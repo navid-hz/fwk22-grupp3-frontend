@@ -19,7 +19,7 @@ const CreateBlog = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/blogs", {
+      const response = await fetch("https://fwk22-grupp3-backend-production.up.railway.app/blogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
