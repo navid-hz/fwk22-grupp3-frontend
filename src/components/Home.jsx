@@ -7,7 +7,7 @@ function Home() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/blogs", {
+        const response = await fetch("https://fwk22-grupp3-backend-production.up.railway.app/blogs", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function Home() {
 
   const deleteBlog = async (id) => {
     try {
-      await fetch(`http://localhost:5000/blogs/${id}`, {
+      await fetch(`https://fwk22-grupp3-backend-production.up.railway.app/blogs/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
