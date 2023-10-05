@@ -7,7 +7,7 @@ const Blog = () => {
   // Get the blogId
   const { id } = useParams();
 
-  console.log(id);
+  
 
   useEffect(() => {
     fetchAllBlogs();
